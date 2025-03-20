@@ -1,0 +1,11 @@
+{
+    "extensions.ignoreRecommendations": true,
+    "C_Cpp.default.configurationProvider": "particle.particle-vscode-core",
+    "files.associations": {
+        "*.ino": "cpp"
+    },
+    "particle.targetDevice": "BME312",
+    "particle.firmwareVersion": "2.2.0",
+    "particle.targetPlatform": "boron",
+    "C_Cpp.errorSquiggles": "Enabled"
+}
