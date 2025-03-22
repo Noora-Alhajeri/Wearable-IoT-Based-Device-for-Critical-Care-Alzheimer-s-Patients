@@ -1,35 +1,184 @@
-# BME312
+# Wearable IoT-Based Device for Critical Care Alzheimer's Patients
 
-A Particle project named BME312
+## Overview
 
-## Welcome to your project!
+Alzheimer’s disease (AD) is a progressive neurological disorder causing **memory loss, cognitive decline, and loss of independence**. It is a leading cause of disability among the elderly, affecting millions worldwide. By **2030**, an estimated **74.7 million people** will be diagnosed with AD, increasing to **107 million by 2050**.
 
-Every new Particle project is composed of 3 important elements that you'll see have been created in your project directory for BME312.
+A major challenge faced by AD patients is **wandering and disorientation**, leading to safety concerns:
 
-#### ```/src``` folder:  
-This is the source folder that contains the firmware files for your project. It should *not* be renamed. 
-Anything that is in this folder when you compile your project will be sent to our compile service and compiled into a firmware binary for the Particle device that you have targeted.
+- **41%** of patients get lost outside their homes.
+- **30%** get lost inside their own homes (UK data).
+- **70.7%** of AD patients in Taiwan report wandering incidents.
 
-If your application contains multiple files, they should all be included in the `src` folder. If your firmware depends on Particle libraries, those dependencies are specified in the `project.properties` file referenced below.
+Additionally, AD patients have an **increased risk of falls**, leading to serious injuries due to **postural imbalances and motor impairments**.
+![Prevalence of dementia patients around continents](./figures/figure1.png)
 
-#### ```.ino``` file:
-This file is the firmware that will run as the primary application on your Particle device. It contains a `setup()` and `loop()` function, and can be written in Wiring or C/C++. For more information about using the Particle firmware API to create firmware for your Particle device, refer to the [Firmware Reference](https://docs.particle.io/reference/firmware/) section of the Particle documentation.
+Therefore, this project presents a **Smart Wearable Medical Device (SWMD)**—an advanced **IoT-based hand-band** designed to:
 
-#### ```project.properties``` file:  
-This is the file that specifies the name and version number of the libraries that your project depends on. Dependencies are added automatically to your `project.properties` file when you add a library to a project using the `particle library add` command in the CLI or add a library in the Desktop IDE.
+- Track patients' **location** via GPS.
+- **Detect falls** and notify caregivers immediately.
+- Send **emergency alerts** in critical situations.
+- Monitor vital biomarkers, including **temperature, heart rate, and body movement**.
 
-## Adding additional files to your project
+It consists of:
 
-#### Projects with multiple sources
-If you would like add additional files to your application, they should be added to the `/src` folder. All files in the `/src` folder will be sent to the Particle Cloud to produce a compiled binary.
+1. A **wearable device** embedded with multiple sensors for real-time health monitoring.
+2. A **cloud-connected application** using **Firebase** to store, synchronize, and display data for caregivers.
 
-#### Projects with external libraries
-If your project includes a library that has not been registered in the Particle libraries system, you should create a new folder named `/lib/<libraryname>/src` under `/<project dir>` and add the `.h`, `.cpp` & `library.properties` files for your library there. Read the [Firmware Libraries guide](https://docs.particle.io/guide/tools-and-features/libraries/) for more details on how to develop libraries. Note that all contents of the `/lib` folder and subfolders will also be sent to the Cloud for compilation.
+---
 
-## Compiling your project
+## Features
 
-When you're ready to compile your project, make sure you have the correct Particle device target selected and run `particle compile <platform>` in the CLI or click the Compile button in the Desktop IDE. The following files in your project folder will be sent to the compile service:
+| **Feature**                          | **Description**                                                                                                 |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
+| **Real-Time Monitoring**             | Continuously tracks **heart rate, blood pressure, and oxygen saturation** for early detection of health issues. |
+| **GPS Tracking**                     | Enables caregivers to instantly **locate patients**, reducing the risk of wandering and ensuring safety.        |
+| **User-Friendly Mobile Application** | Displays **real-time health data** and sends alerts for **abnormal readings or emergency situations**.          |
+| **Firebase Cloud Storage**           | Uses **Google Firebase** for secure, real-time data storage and synchronization.                                |
+| **Communication Protocols**          | Utilizes **Bluetooth Low Energy (BLE)** and **Wi-Fi** for **seamless and power-efficient data transmission**.   |
+| **Regulatory Compliance**            | Designed to meet **FDA and CE medical device regulations**, ensuring safety and reliability.                    |
 
-- Everything in the `/src` folder, including your `.ino` application file
-- The `project.properties` file for your project
-- Any libraries stored under `lib/<libraryname>/src`
+![Block Diagram of the Device](./figures/figure2.png)
+
+---
+
+## Components Used
+
+1. MPU-6050 Acc & Gyro Sensor
+2. MAX30100 Pulse Oximeter and Heart Rate Sensor
+3. Texas Instrument LM35 Temperature Sensor
+4. GPS GPS6MV2 module (Ultimate GPS FeatherWing)
+5. LCD Display (1.8 inches)
+6. Buzzer
+7. 3.7V Lithium-Ion Battery (2000 mAh)
+8. ESP32-WROOM-32 Particle Boron Microcontroller Module
+9. SIM800L Module
+
+![Materials and Components Used](./figures/figure3.png)
+
+---
+
+## Methods
+
+The system consists of multiple input sensors, a microcontroller, batteries, and output components to provide **real-time health monitoring and fall detection** for Alzheimer's patients.
+![System Diagram](./figures/figure4.png)
+
+It provides **two primary outputs**:
+
+- Sounds an alert when abnormal health readings or falls are detected.
+- Sends real-time sensor data to a **cloud-hosted database** (Firebase) for remote monitoring.
+
+### 1. Operational Process
+
+![Operating Flow Chart](./figures/figure5.png)
+
+1. The system turns on and connects to the **GSM module**. If unsuccessful, the device powers off.
+2. Sensors capture and analyze health parameters and movement every **10 seconds**.
+3. The microcontroller processes and uploads data to Firebase, ensuring real-time access.
+4. If **fall detection** or **abnormal readings** occur, the **buzzer sounds**, and an **alert is sent** via the cloud to caregivers.
+
+---
+
+### 2. Hardware Connections
+
+**Table 1: Connections between the Particle Boron and the Ultimate GPS FeatherWing**
+
+| Particle Boron | Ultimate GPS FeatherWing |
+| -------------- | ------------------------ |
+| 3.3V           | 3.3V                     |
+| GND            | GND                      |
+| TX(D9)         | RX                       |
+| RX(D10)        | TX                       |
+
+**Table 2: Connections between the Particle Boron and MLX90614 Temperature Sensor**
+| Particle Boron | MLX90614 Temperature Sensor |
+|------------------------------|-----------------------------|
+| 3.3V | Vin |
+| GND | GND |
+| SCL(D1) | SCL |
+| SDA(D0) | SDA |
+
+**Table 3: Connections between the Particle Boron and MPU6050 Acc & Gyro Sensor**
+| Particle Boron | MPU6050 Acc & Gyro Sensor |
+|------------------------------|-----------------------------|
+| 3.3V | Vin |
+| GND | GND |
+| SCL(D1) | SCL |
+| SDA(D0) | SDA |
+
+**Table 4: Connections between the Particle Boron and the MAX 30100 Heart Oximeter sensor**
+| Particle Boron | MAX 30100 Heart Oximeter |
+|------------------------------|-----------------------------|
+| 3.3V | Vin |
+| GND | GND |
+| SCL(D1) | SCL |
+| SDA(D0) | SDA |
+
+![Hardware Schematic](./figures/CC.png)  
+_Figure : Hardware Schematic._
+
+![Hardware Ciruit](./figures/CCC.png)  
+_Figure : Hardware Ciruit._
+
+---
+
+### 3. Application
+
+#### User Interface Screens
+
+![Home Page](./figures/G.png) ![Readings Page](./figures/H.png)
+
+---
+
+## Final Prototype
+
+![Final Prototype](./figures/project.png)
+
+Designed and Packaged as a Certified Medical Device:
+
+- The prototype is fully **labeled and packaged** for **medical use**.
+- A **detailed User Manual** is available: [User Manual](./User%20Manual.docx).
+
+---
+
+## Risk Management and Analysis
+
+A **full analysis of risks**, which includes details on risk identification, risk evaluation (matrix analysis), and risk control measures, is available: [Risk Analysis](./Risk%20Analysis.docx).
+
+---
+
+## Classification
+
+### CE Classification
+
+- **Class IIb**: The system is classified as **Class IIb** under **CE medical regulations**. Falls under **Rule 10** "Devices monitoring vital physiological processes where variations can pose **immediate danger**".
+
+### FDA Classification
+
+- **Class I**: Based on **similar fall detection devices**, the system meets **FDA Class I** criteria.
+
+![FDA Classification](./figures/FDA.png)
+
+---
+
+## License & Copyright
+
+This project is licensed under the **MIT License**.
+
+You are free to use, modify, and distribute this project for **educational and research purposes**, but proper credit must be given to the original author **(Noora-Alhajeri)**.
+
+### **Copyright Notice**
+
+© 2024 **Noora-Alhajeri**. All rights reserved.
+
+Originally Developed: **June 15, 2022**
+Uploaded to GitHub: **2024**
+
+---
+
+## Contact
+
+For questions or collaboration, feel free to reach out:
+
+📧 **Email:** [n.s3eedalhajeri@gmail.com](mailto:n.s3eedalhajeri@gmail.com)  
+🌐 **LinkedIn:** [Noora-Alhajeri](https://www.linkedin.com/in/nsh-019)

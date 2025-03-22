@@ -5,7 +5,11 @@
         "*.ino": "cpp"
     },
     "particle.targetDevice": "BME312",
+<<<<<<< HEAD
     "particle.firmwareVersion": "2.2.0",
+=======
+    "particle.firmwareVersion": "6.1.1",
+>>>>>>> 7d357ee (Updated README)
     "particle.targetPlatform": "boron",
     "C_Cpp.errorSquiggles": "Enabled"
 }
