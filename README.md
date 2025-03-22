@@ -117,13 +117,15 @@ The system consists of multiple input sensors, a microcontroller, batteries, and
 
 ## ![Hardware Schematic](./figures/CC.png)
 
+---
+
 ### 3. Application
 
 #### User Interface Screens
 
 | Home Page                                                            | Readings Page                                                            |
 | -------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| <img src="./figures/G.png" alt="Home Page" width="300" height="200"> | <img src="./figures/H.png" alt="Readings Page" width="300" height="200"> |
+| <img src="./figures/G.png" alt="Home Page" width="600" height="400"> | <img src="./figures/H.png" alt="Readings Page" width="600" height="400"> |
 
 ---
 
