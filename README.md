@@ -60,22 +60,21 @@ It consists of:
 
 ## Methods
 
-The system consists of multiple input sensors, a microcontroller, batteries, and output components to provide **real-time health monitoring and fall detection** for Alzheimer's patients.
-![System Diagram](./figures/figure4.png)
-
-It provides **two primary outputs**:
-
+The system consists of multiple input sensors, a microcontroller, batteries, and output components to provide **real-time health monitoring and fall detection** for Alzheimer's patients. It provides **two primary outputs**:
 - Sounds an alert when abnormal health readings or falls are detected.
 - Sends real-time sensor data to a **cloud-hosted database** (Firebase) for remote monitoring.
 
-### 1. Operational Process
+![System Diagram](./figures/figure4.png)
 
-![Operating Flow Chart](./figures/figure5.png)
+
+### 1. Operational Process
 
 1. The system turns on and connects to the **GSM module**. If unsuccessful, the device powers off.
 2. Sensors capture and analyze health parameters and movement every **10 seconds**.
 3. The microcontroller processes and uploads data to Firebase, ensuring real-time access.
 4. If **fall detection** or **abnormal readings** occur, the **buzzer sounds**, and an **alert is sent** via the cloud to caregivers.
+
+![Operating Flow Chart](./figures/figure5.png)
 
 ---
 
@@ -114,19 +113,19 @@ It provides **two primary outputs**:
 | SCL(D1) | SCL |
 | SDA(D0) | SDA |
 
+
+#### Hardware Schematic
 ![Hardware Schematic](./figures/CC.png)  
-_Figure : Hardware Schematic._
-
-![Hardware Ciruit](./figures/CCC.png)  
-_Figure : Hardware Ciruit._
-
 ---
 
 ### 3. Application
 
 #### User Interface Screens
 
-![Home Page](./figures/G.png) ![Readings Page](./figures/H.png)
+<div style="display: flex; justify-content: space-around;">
+    <img src="./figures/G.png" alt="Home Page" width="400" height="300">
+    <img src="./figures/H.png" alt="Readings Page" width="400" height="300">
+</div>
 
 ---
 
