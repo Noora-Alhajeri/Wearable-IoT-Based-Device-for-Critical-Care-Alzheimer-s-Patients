@@ -61,11 +61,11 @@ It consists of:
 ## Methods
 
 The system consists of multiple input sensors, a microcontroller, batteries, and output components to provide **real-time health monitoring and fall detection** for Alzheimer's patients. It provides **two primary outputs**:
+
 - Sounds an alert when abnormal health readings or falls are detected.
 - Sends real-time sensor data to a **cloud-hosted database** (Firebase) for remote monitoring.
 
 ![System Diagram](./figures/figure4.png)
-
 
 ### 1. Operational Process
 
@@ -113,19 +113,17 @@ The system consists of multiple input sensors, a microcontroller, batteries, and
 | SCL(D1) | SCL |
 | SDA(D0) | SDA |
 
-
 #### Hardware Schematic
-![Hardware Schematic](./figures/CC.png)  
----
+
+## ![Hardware Schematic](./figures/CC.png)
 
 ### 3. Application
 
 #### User Interface Screens
 
-<div style="display: flex; justify-content: space-around;">
-    <img src="./figures/G.png" alt="Home Page" width="400" height="300">
-    <img src="./figures/H.png" alt="Readings Page" width="400" height="300">
-</div>
+| Home Page                                                            | Readings Page                                                            |
+| -------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| <img src="./figures/G.png" alt="Home Page" width="300" height="200"> | <img src="./figures/H.png" alt="Readings Page" width="300" height="200"> |
 
 ---
 
